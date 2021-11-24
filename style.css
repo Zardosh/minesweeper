@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: 400 16px Roboto, sans-serif;
+    background: radial-gradient(#777, #333);
+    color: #eee;
+    -webkit-font-smoothing: antialiased;
+}
+
+input, button, textarea {
+    font: 400 18px Roboto, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    height: 100vh;
+}
+
+#difficulty-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    margin-top: 16px;
+}
+
+#difficulty {
+    margin-left: 8px;
+    padding: 4px;
+    border: 0;
+    border-radius: 5px;
+}
+
+#flags-count-container {
+    margin-top: 16px;
+}
+
+#board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 4px 16px 0 16px;
+    border: 2px solid black;
+}
+
+#start-game {
+    margin-top: 16px;
+    padding: 4px 16px;
+    border: 0;
+    border-radius: 5px;
+    background: #0F0;
+    color: #555;
+    transition: all 1s ease;
+}
+
+#start-game:hover {
+    transform: scale(1.1) perspective(1px)
+}
+
+#start-game:active {
+    position: relative;
+    top: 4px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    
+    color: #555;
+}
+
+.row .square:first-child {
+    border-left: 0;
+}
+
+.row:first-child .square {
+    border-top: 0;
+}
+
+.square:hover {
+    background: #CCC;
+    cursor: pointer;
+}
+
+.unopened {
+    background: #AAA;
+}
+
+.opened {
+    background: #EEE;
+}
+
+.bomb {
+    background: #E00;
+}
+
+.bomb img {
+    width: 20px;
+    height: 20px;
+    color: #FFF;
+}
+
+.one {
+    color: #00F;
+}
+
+.two {
+    color: #070;
+}
+
+.three {
+    color: #F00;
+}
+
+.four {
+    color: #007;
+}
+
+.five {
+    color: #700;
+}
+
+.six {
+    color: #077;
+}
+
+.seven {
+    color: #000;
+}
+
+.eight {
+    color: #777;
+}
+
+.hide {
+    display: none !important;
+}
