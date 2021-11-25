@@ -259,12 +259,10 @@ function configureSquareClickEvent(square) {
     
             switch (squareValue) {
                 case '.':
-                case 'F':
                     revealSquare(row, column);
 
                     break;
                 case 'B':
-                case 'BF':
                     loseGame();
                     break;
             }
