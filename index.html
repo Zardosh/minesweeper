@@ -11,8 +11,6 @@
 </head>
 <body>
     <div id="container">
-        <p id="timer">00:00</p>
-
         <div id="difficulty-container">
             <label for="difficulty">Difficulty:</label>
             <select name="difficulty" id="difficulty">
@@ -22,12 +20,24 @@
             </select>
         </div>
 
-        <div id="flags-count-container" class="hide">
-            <span id="flags-count">0</span>
-            <img src="assets/icons/flag.svg">
-        </div>
+        <div id="board-container">
+            <div id="board-header" class="hide">
+                <div id="flags-count-container" class="hide">
+                    <span id="flags-count">0</span>
+                    <img src="assets/icons/flag.svg">
+                </div>
 
-        <div id="board" class="hide"></div>
+                <div id="result-container" class="hide">
+                    <span id="result"></span>
+                </div>
+
+                <div id="timer-container" class="hide">
+                    <p id="timer">00:00</p>
+                </div>
+            </div>
+    
+            <div id="board" class="hide"></div>
+        </div>
 
         <button type="button" id="start-game">Start</button>
     </div>

@@ -47,8 +47,25 @@ button {
     border-radius: 5px;
 }
 
-#flags-count-container {
-    margin-top: 16px;
+#board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    margin: 16px 16px 0 16px;
+    background: black;
+    border-radius: 8px;
+}
+
+#board-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    width: 100%;
+    margin-top: 10px;
+    padding: 0 8px;
 }
 
 #board {
@@ -57,7 +74,7 @@ button {
     align-items: center;
     justify-content: center;
 
-    margin: 4px 16px 0 16px;
+    margin: 4px;
     border: 2px solid black;
 }
 
@@ -91,8 +108,8 @@ button {
     align-items: center;
     justify-content: center;
 
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 26px;
     border-top: 1px solid black;
     border-left: 1px solid black;
     
@@ -160,6 +177,14 @@ button {
 
 .eight {
     color: #777;
+}
+
+.win {
+    color: #0D0;
+}
+
+.defeat {
+    color: #D00;
 }
 
 .hide {

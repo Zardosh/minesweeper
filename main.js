@@ -122,7 +122,7 @@ function countMinesAroundSquare(row, column) {
     return mines;
 }
 
-function stopGame() {
+function stopGame(hasWon) {
     if (timerInterval) {
         clearInterval(timerInterval);
     }
@@ -134,6 +134,18 @@ function stopGame() {
     }
 
     squareListeners = {};
+
+    const gameResult = document.getElementById('result');
+
+    if (hasWon) {
+        gameResult.innerText = 'You win!';
+        gameResult.className = 'win';
+    } else {
+        gameResult.innerText = 'You lose.';
+        gameResult.className = 'defeat';
+    }
+
+    document.getElementById('result-container').classList.remove('hide');
 }
 
 function hasWon() {
@@ -160,8 +172,7 @@ function revealSquare(row, column) {
     squareElement.className = 'square ' + squareClassNames[board[row][column]];
 
     if (hasWon()) {
-        stopGame();
-        alert('You won!');
+        stopGame(true);
     }
 
     if (mineCount === 0) {
@@ -205,7 +216,7 @@ function switchFlag(row, column) {
     }
 }
 
-function hasLost() {
+function loseGame() {
     const bombPositions = [];
 
     for (let i = 0; i < size[0]; i++) {
@@ -219,8 +230,6 @@ function hasLost() {
     bombRevealInterval = setInterval(() => {
         if (bombPositions.length == 0) {
             clearInterval(bombRevealInterval);
-
-            alert('dead');
         } else {
             const squareElement = document.getElementById(bombPositions.shift());
             
@@ -228,6 +237,8 @@ function hasLost() {
             squareElement.className = 'square ' + squareClassNames['X'];
         }
     }, 100);
+    
+    stopGame(false);
 }
 
 function configureSquareClickEvent(square) {
@@ -254,8 +265,7 @@ function configureSquareClickEvent(square) {
                     break;
                 case 'B':
                 case 'BF':
-                    hasLost();
-                    stopGame();
+                    loseGame();
                     break;
             }
         }
@@ -292,6 +302,7 @@ function renderBoard() {
     }
     
     boardElement.classList.remove('hide');
+    document.getElementById('board-header').classList.remove('hide');
 }
 
 function renderFlagsCount() {
@@ -302,9 +313,18 @@ function renderFlagsCount() {
     flagsCountContainerElement.classList.remove('hide');
 }
 
+function renderResultText() {
+    const gameResult = document.getElementById('result');
+
+    gameResult.innerText = '';
+
+    document.getElementById('result-container').classList.add('hide');
+}
+
 function startTimer() {
     timeInSeconds = 0;
 
+    document.getElementById('timer-container').classList.remove('hide');
     const timer = document.getElementById('timer');
 
     timer.innerText = '00:00';
@@ -332,6 +352,7 @@ function loadGame() {
     initializeBoard();
     renderBoard();
     renderFlagsCount();
+    renderResultText();
     startTimer();
 }
 
@@ -351,15 +372,15 @@ document.getElementById('start-game').addEventListener('click', function() {
     loadGame();
 });
 
+document.getElementById('board').addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+
+    return false;
+});
+
 function randomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
 
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
-document.getElementById('board').addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-
-    return false;
-})
